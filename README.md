@@ -1,6 +1,6 @@
 # Constructing Semantics-Aware Adversarial Examples with Probabilistic Perspective
 
-This repository contains the implementation and resources for our paper: Constructing Semantics-Aware Adversarial Examples with Probabilistic Perspective
+This repository contains the implementation and resources for our paper: [Constructing Semantics-Aware Adversarial Examples with a Probabilistic Perspective](https://arxiv.org/abs/2306.00353).
 
 The code in this case is modified from OpenAI's guided diffusion repo (https://github.com/openai/guided-diffusion), where you can also download the pretrained diffusion weights (256x256_diffusion.pt).
 
