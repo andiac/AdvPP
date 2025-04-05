@@ -123,6 +123,9 @@ def main():
             # logits = classifier(x_0, t*0)
             # logits = classifier(x_in, t*0)
             # logits = classifier(x_in)
+
+            # transfer x_0 from [-1, 1] to [0, 1]
+            x_0 = (x_0 + 1.0) / 2.0
             logits = classifier(x_0)
             log_probs = F.log_softmax(logits, dim=-1)
             selected = log_probs[range(len(logits)), y.view(-1)]
@@ -170,13 +173,18 @@ def main():
             start_step=args.start_step,
         )
 
+        # transfer sample from [-1, 1] to [0, 1]
+        sample = (sample + 1.0) / 2.0
+
         # classify the samples
         logits = classifier(sample)
         log_probs = F.log_softmax(logits, dim=-1)
         classes_pred = log_probs.argmax(dim=-1)
         print(classes_pred)
 
-        sample = ((sample + 1) * 127.5).clamp(0, 255).to(th.uint8)
+
+        # sample = ((sample + 1) * 127.5).clamp(0, 255).to(th.uint8)
+        sample = (sample * 255.0).clamp(0, 255).to(th.uint8)
         sample = sample.permute(0, 2, 3, 1)
         sample = sample.contiguous()
 
